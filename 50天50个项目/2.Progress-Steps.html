@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress-Steps</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        .box {
+            margin: 300px auto;
+            width: 26.6667vw;
+        }
+        .top {
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: space-between; /* 子盒子先贴两边，在平分空间/ */
+            margin-bottom: 25px;
+        }
+        .top::before {
+            content: '';
+            position: absolute;
+            z-index: -10;
+            top: 50%; transform: translateY(-50%);
+            width: 100%; height: 4px;
+            background-color: #dadada;
+        }
+        .top div.Circle {
+            box-sizing: border-box;
+            width: 30px; height: 30px;
+            background-color: #fff;
+            border: 3px #dadada solid;
+            border-radius: 50%;
+            display: flex;                  /* 文字居中 */
+            justify-content: center;        /* 文字居中 */
+            align-items: center;            /* 文字居中 */
+        }
+        .newCircle {
+            box-sizing: border-box;
+            width: 30px; height: 30px;
+            background-color: #fff;
+            border: 3px rgb(57, 180, 229) solid;
+            border-radius: 50%;
+            display: flex;                  /* 文字居中 */
+            justify-content: center;        /* 文字居中 */
+            align-items: center;            /* 文字居中 */
+        }
+        .progress-container {
+            position: absolute;
+            z-index: -10;
+            top: 50%; transform: translateY(-50%);
+            height: 4px;
+            background-color: rgb(57, 180, 229);
+            transition: width .5s ease 0s;
+        }
+        /* 按钮 */
+        .bottom {
+            display: flex;
+            justify-content: center;
+            width: 100%; height: 35px;
+        }
+        button {
+            margin: 0 5px;
+            align-items: center;
+            width: 6.6667vw;
+            background-color: #3498DB;
+            border: 0px;
+            border-radius: 10px;
+            color: #fff;
+        }
+        button:active {
+            transform: scale(97%);
+        }
+        .newColor {
+            background-color: #dadada;
+            cursor: not-allowed;
+        }
+        .circle {
+            transition: all .7s ease 0s;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="top">
+            <div class="progress-container" style="width: 0%;"></div>
+            <div class="circle newCircle">1</div>
+            <div class="circle Circle">2</div>
+            <div class="circle Circle">3</div>
+            <div class="circle Circle">4</div>
+        </div>
+        <div class="bottom">
+            <button id="Prew" class="newColor">Prew</button>
+            <button id="Next">Next</button>
+        </div>
+    </div>
+
+    <script>
+        var progress_container = document.querySelector('.progress-container');
+        var getCircle = document.querySelectorAll('.circle');
+        var getPrew = document.getElementById('Prew');
+        var getNext = document.getElementById('Next');
+        var currentActive = 0;
+        getNext.onclick = function() {
+            currentActive++;
+            if (currentActive == 1) {
+                progress_container.style.width = '33.3333%';
+                getPrew.style.backgroundColor = '#3498DB';
+                getPrew.style.cursor = 'default';
+                getCircle[1].style.borderColor = 'rgb(57, 180, 229)';
+            } else if (currentActive == 2) {
+                progress_container.style.width = '66.6666%';
+                getPrew.style.backgroundColor = '#3498DB';
+                getPrew.style.cursor = 'default';
+                getCircle[2].style.borderColor = 'rgb(57, 180, 229)';
+            } else if (currentActive == 3) {
+                progress_container.style.width = '100%';
+                getPrew.style.backgroundColor = '#3498DB';
+                this.style.backgroundColor = '#dadada';
+                this.style.cursor = 'not-allowed';
+                getCircle[3].style.borderColor = 'rgb(57, 180, 229)';
+            } else {
+                currentActive = 3;
+            }
+        }
+        getPrew.onclick = function() {
+            currentActive--;
+            if (currentActive == 0) {
+                progress_container.style.width = '0%';
+                this.style.backgroundColor = '#dadada';
+                this.style.cursor = 'not-allowed';
+                getCircle[1].style.borderColor = '#dadada';
+            } else if (currentActive == 1) {
+                progress_container.style.width = '33.3333%';
+                getNext.style.backgroundColor = '#3498DB';
+                getNext.style.cursor = 'default';
+                getCircle[2].style.borderColor = '#dadada';
+
+            } else if (currentActive == 2) {
+                progress_container.style.width = '66.6666%';
+                getNext.style.backgroundColor = '#3498DB';
+                getNext.style.cursor = 'default';
+                getCircle[3].style.borderColor = '#dadada';
+            } else {
+                currentActive = 0;
+            }
+        }
+    </script>
+</body>
+</html>

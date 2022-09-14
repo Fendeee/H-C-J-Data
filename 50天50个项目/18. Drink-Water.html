@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drink Water</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #3494E4;
+            color: #FFF;
+        }
+        h1 {  margin: 15px 0; }
+        p {
+            font-size: 18px;
+        }
+        div.box {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            width: 150px; height: 330px;
+            border: 5px #144FC6 solid;
+            border-radius: 0 0 40px 40px;
+            letter-spacing: 2px;
+            overflow: hidden;
+        }
+        div.bowl {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+        div.none {
+            height: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #6AB3F8;
+            transition: all .3s ease 0s;
+        }
+        i {
+            font-style: normal;
+            font-size: 20px;
+        }
+        h3 {
+            position: relative;
+            color: #144FC6;
+            font-size: 20px;
+            text-align: center;
+            transition: all .3s ease 0s;
+        }
+        ul {
+            margin: 10px 0;
+            width: 270px; height: 230px;
+        }
+        li {
+            float: left;
+            margin: 5px;
+            width: calc(100% / 4 - 10px); height: calc(100% / 2 - 10px);
+            list-style: none;
+            border: 5px #144FC6 solid;
+            border-radius: 0 0 20px 20px;
+            background-color: #EBF5FC;
+            text-align: center;
+            line-height: calc(230px / 2 - 20px);
+            color: #144FC6;
+            transition: all .3s ease 0s;
+        }
+        li.change {
+            float: left;
+            margin: 5px;
+            width: calc(100% / 4 - 10px); height: calc(100% / 2 - 10px);
+            list-style: none;
+            border: 5px #144FC6 solid;
+            border-radius: 0 0 20px 20px;
+            background-color: #6AB3F8;
+            text-align: center;
+            line-height: calc(230px / 2 - 20px);
+            color: #FFFFFF;
+            transition: all .5s ease 0s;
+        }
+        li::before {
+            content: '250ml';
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Drink Water</h1>
+    <p>Goal: 2 Liters</p>
+    <div class="box">
+        <div class="bowl">
+            <h3><span></span>L</h3>
+        </div>
+        <div class="none"><i></i>%</div>
+    </div>
+    <p>Select how many glasses of water that you have drank</p>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script>
+        const li = document.querySelectorAll('li')
+        const span = document.querySelector('span')
+        const none = document.querySelector('.none')
+        const bowl = document.querySelector('.bowl')
+        const h3 = document.querySelector('h3')
+        const I = document.querySelector('i')
+        let num = 0
+        let he = 0
+        let sNum = 2
+        let iNum = 0
+        span.innerHTML = sNum
+        for(let i=0; i<li.length; i++){
+            li[i].addEventListener('click', function(){
+                if(this.classList.contains('change')){
+                    this.classList.toggle('change')
+                    sNum += 0.25
+                    span.innerHTML = sNum
+                    num--
+                    he = 41.25 * num + 'px'
+                    none.style.height = he
+                    iNum -= 12.5
+                    I.innerHTML = iNum
+                    if(num < li.length) h3.style.color = '#144FC6'
+                }
+                else{
+                    this.classList.toggle('change')
+                    sNum -= 0.25
+                    span.innerHTML = sNum
+                    num++
+                    he = 41.25 * num + 'px'
+                    none.style.height = he
+                    iNum += 12.5
+                    I.innerHTML = iNum
+                    if(num == li.length){
+                        bowl.style.height = '0px'
+                        h3.style.color = 'transparent'
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+</html>

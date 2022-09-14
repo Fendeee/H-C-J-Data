@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sound-board</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        body {
+            display: flex;
+            justify-content: center;
+            background-color: #A164DF;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            color: #fff;
+            text-align: center;
+        }
+        li {display: inline-block;
+            margin: 15px 15px;
+            padding: 30px 50px;
+            list-style: none;
+            background-color: #663399;
+            box-shadow: 0 0 5px #663399;
+            border-radius: 10px;
+            font-size: 1.2222rem;
+            cursor: pointer;
+        }
+        li:hover {
+            background-color: #6C38A0;
+        }
+        li:active {
+            transform: scale(97%);
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <audio index="0" src="./audio/victory.mp3" controls="controls"></audio>
+    <audio index="1" src="./audio/wao.mp3" controls="controls"></audio>
+    <audio index="2" src="./audio/police.mp3" controls="controls"></audio>
+    <audio index="3" src="./audio/pig.mp3" controls="controls"></audio>
+    <audio index="4" src="./audio/handclap.mp3" controls="controls"></audio>
+    <audio index="5" src="./audio/gameover.mp3" controls="controls"></audio>
+    <div class="box">
+        <ul>
+            <li>The victory</li>
+            <li>waoo~</li>
+            <li>police</li>
+            <li>The pig</li>
+            <li>clap</li>
+            <li>game over</li>
+        </ul>
+    </div>
+    <script>
+        var audios = document.querySelectorAll('audio');
+        var lis = document.querySelectorAll('li');
+        for (var i=0; i<lis.length; i++) {
+            lis[i].setAttribute('index', i);
+            lis[i].addEventListener('click', function() {
+                for (var i=0; i<lis.length; i++) {
+                    lis[i].className = 'current_none';
+                }
+                var index = this.getAttribute('index',i);
+                for (var i=0; i<lis.length; i++) {
+                    audios[i].pause();
+                }
+                audios[index].play();
+            });
+        }
+    </script>
+</body>
+</html>

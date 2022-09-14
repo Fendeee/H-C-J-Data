@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random-choice-picker</title>
+    <style>
+        /* 1.屏幕小于768px，布局容器设置为100% */
+        @media screen and (max-width: 767px) {
+            .input { width: 90% !important; }
+            h1 {
+                margin-top: 40px !important;
+                font-size: 14px !important;
+            }
+            h1::before {
+                top: 15px !important;
+            }
+        }
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            background-color: #2B88F0;
+        }
+        div.banner {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            width: 100%;
+            height: 200px;
+        }
+        h1 {
+            margin-top: 25px;
+            width: 100%;
+            color: #FFFFFF;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: .5px;
+        }
+        h1::before {
+            content: '输入完请安回车键';
+            position: absolute;
+            top: -1px;
+            left: 50%; transform: translateX(-50%);
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+        .input {
+            position: absolute;
+            left: 50%; transform: translateX(-50%);
+            bottom: 0;
+            width: 35%; height: 50%;
+        }
+        textarea {
+            position: absolute;
+            padding: 10px;
+            width: 100%; height: 100%;
+            font-size: 20px;
+        }
+        div.none {
+            display: none;
+            position: absolute;
+            left: 50%; transform: translateX(-50%);
+            bottom: -60px;
+            padding: 10px 20px;
+            max-width: 300px;
+            background-color: #F0932B;
+            border-radius: 50px;
+            color: #FFFFFF;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            animation: F 1s ease-in 0s 1;
+        }
+        @keyframes color {
+            0% { }
+            10% { background-color: #273C75; }
+            15% { background-color: #F0932B; }
+            20% { background-color: #273C75; }
+            25% { background-color: #F0932B; }
+            40% { background-color: #273C75; }
+            45% { background-color: #F0932B; }
+            50% { background-color: #273C75; }
+            60% { background-color: #273C75; }
+            70% { background-color: #F0932B; }
+            80% { background-color: #273C75; }
+            90% { background-color: #F0932B; }
+            100% { background-color: #273C75; }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>
+            Enter all of the choices divided by a comma (',').<br>
+            Press enter when you're done
+        </h1>
+        <div class="input">
+            <textarea name="" id="" cols="15" rows="5" placeholder="Enter choices here..."></textarea>
+        </div>
+        <div class="none"></div>
+    </div>
+
+    <script>
+        var textarea = document.querySelector('textarea'),
+        none = document.querySelector('.none');
+        textarea.addEventListener('keyup', function(e) {
+            none.style.display = 'block';
+            none.innerHTML = this.value;
+            if (e.keyCode == 13) {
+                this.value = '';
+                none.style.animationName = 'color';
+                none.style.backgroundColor = '#273C75';
+            } else {
+                none.style.animationName = 'F';
+                none.style.backgroundColor = '#F0932B';
+            }
+        });
+    </script>
+</body>
+</html>

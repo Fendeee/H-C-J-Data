@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>faq-collapse</title>
+    <style>
+        @font-face {
+          font-family: 'icomoon';
+          src:  url('./fonts/icomoon.eot?eih8vw');
+          src:  url('./fonts/icomoon.eot?eih8vw#iefix') format('embedded-opentype'),
+            url('./fonts/icomoon.ttf?eih8vw') format('truetype'),
+            url('./fonts/icomoon.woff?eih8vw') format('woff'),
+            url('./fonts/icomoon.svg?eih8vw#icomoon') format('svg');
+          font-weight: normal;
+          font-style: normal;
+          font-display: block;
+        }
+        * {
+            margin: 0; padding: 0
+        }
+        body {
+            background-color: #F0F0F0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        h1 {
+            margin-top: 30px;
+            padding: 20px 0;
+            text-align: center;
+            font-weight: 450;
+        }
+        .banner {
+            position: absolute;
+            left: 50%; transform: translateX(-50%);
+            max-width: 900px;
+            min-width: 380px;
+        }
+        .text {
+            position: relative;
+            z-index: -9999;
+            margin: 18px 0;
+            padding: 25px 30px;
+            padding-right: 100px;
+            border: 1px #999999 solid;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all .3s ease 0s;
+        }
+        i {
+            display: none;
+            position: absolute;
+            z-index: -1;
+            top: -20px; left: -50px;
+            font-family: 'icomoon';
+            font-size: 160px;
+            color: rgba(134, 192, 233, 0.5);
+        }
+        em {
+            display: none;
+            position: absolute;
+            z-index: -1;
+            transform: rotate(70deg);
+            top: 20px; left: 60px;
+            font-family: 'icomoon';
+            font-size: 160px;
+            color: rgba(164, 237, 196, 0.5);
+        }
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        p {
+            display: none;
+            font-size: 14px;
+            padding-top: 30px;
+        }
+        button {
+            /* display: none; */
+            position: absolute;
+            top: 27px;
+            right: 0;
+            margin: 0 40px;
+            background-color: transparent;
+            font-family: 'icomoon';
+            border: 0;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Frequently Asked Questions</h1>
+    <div class="banner">
+        <div class="text">
+            <h3>Why shouldn't we trust atoms?</h3>
+            <p>They make up everything.</p>
+            <button></button>
+            <i></i><em></em>
+        </div>
+        <div class="text">
+            <h3>What do you call someone with no body and no nose?</h3>
+            <p>Nobody knows.</p>
+            <button></button>
+            <i></i><em></em>
+        </div>
+        <div class="text">
+            <h3>What's the object-oriented way to become wealthy?</h3>
+            <p>Inheritance.</p>
+            <button></button>
+            <i></i><em></em>
+        </div>
+        <div class="text">
+            <h3>How many tickles does it take to tickle an octopus?</h3>
+            <p>Ten-tickles!</p>
+            <button></button>
+            <i></i><em></em>
+        </div>
+        <div class="text">
+            <h3>What is: 1 + 1?</h3>
+            <p>Depends on who are you asking.</p>
+            <button></button>
+            <i></i><em></em>
+        </div>
+    </div>
+
+    <script>
+        var buttons = document.querySelectorAll('button');
+        flag = 0;
+        for (var i=0; i<buttons.length; i++) {
+            buttons[i].addEventListener('click', function(e) {
+                if (flag == 0) {
+                    this.previousElementSibling.style.display = 'block';            /* previousElementSibling 获取上一个兄弟节点 */
+                    this.nextElementSibling.style.display = 'block';                /* nextElementSibling 获取下一个兄弟节点 */
+                    this.nextElementSibling.nextElementSibling.style.display = 'block';         /* 获取下下个兄弟节点 */
+                    this. parentNode.style.backgroundColor = '#fff';
+                    this. parentNode.style.boxShadow = '0px 0px 15px 5px #dadada';
+                    this.innerHTML = '';
+                    this.style.color = '#9FA4A8';
+                    flag++;
+                    console.log(flag);
+                } else {
+                    this.previousElementSibling.style.display = 'none';
+                    this.nextElementSibling.style.display = 'none';
+                    this.nextElementSibling.nextElementSibling.style.display = 'none';
+                    this. parentNode.style.backgroundColor = '';
+                    this. parentNode.style.boxShadow = '';
+                    this.style.color = '';
+                    this.innerHTML = '';
+                    flag--;
+                    console.log(flag);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

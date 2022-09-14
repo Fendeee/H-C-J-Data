@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>split-landing-page</title>
+    <style>
+        @media (max-width: 800px) {
+            h1 {
+                font-size: 1.6666rem !important;
+                top: 33% !important;
+            }
+            .box {
+                width: 11rem !important;
+            }
+        }
+        * { margin: 0; padding: 0; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+        }
+        .banner {
+            position: relative;
+            display: flex;
+            width: 100%; height: 100vh;
+        }
+        .left {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%; height: 100%;
+            background: url(./images/split-landing-page-PS4.jpg) no-repeat left;
+            background-size: cover;
+            transition: all 1s ease 0s;
+            overflow: hidden;
+        }
+        .left::before {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            background-color: rgba(74, 72, 243, 0.6);
+        }
+        .right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%; height: 100%;
+            background: url(./images/split-landing-page-Xbox.jpg) no-repeat left;
+            background-size: cover;
+            transition: all 1s ease 0s;
+            overflow: hidden;
+        }
+        .right::before {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            background-color: rgba(36, 36, 36, 0.7);
+        }
+        h1 {
+            font-size: 3.7777rem;
+            color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 25%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .box {
+            position: absolute;
+            transform: translateY(-50%);
+            z-index: 9999;
+            width: 14.375rem; height: 60px;
+            border: 3px #fff solid;
+            color: #fff;
+            text-align: center;
+            line-height: 60px;
+            font-weight: 600;
+        }
+        .L:hover {
+            background-color: #5754EC;
+            border-color: #5754EC;
+        }
+        .R:hover {
+            background-color: #1C7A1C;
+            border-color: #1C7A1C;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="left">
+            <h1>Playstation 5</h1>
+            <div class="box L">BUY NOW</div>
+        </div>
+        <div class="right">
+            <h1>Xbox Series X</h1>
+            <div class="box R">BUY NOW</div>
+        </div>
+    </div>
+    <script>
+        var getLeft = document.querySelector('.left');
+        var getRight = document.querySelector('.right');
+        getLeft.addEventListener('mouseover', function(e) {
+            this.style.width = '70%';
+            getRight.style.width = '30%';
+        });
+        getLeft.addEventListener('mouseout', function(e) {
+            this.style.width = '50%';
+            getRight.style.width = '50%';
+        });
+        getRight.addEventListener('mouseover', function(e) {
+            this.style.width = '70%'
+            getLeft.style.width = '30%';
+        });
+        getRight.addEventListener('mouseout', function(e) {
+            this.style.width = '50%';
+            getLeft.style.width = '50%';
+        });
+    </script>
+</body>
+</html>

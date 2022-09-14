@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>give a like</title>
+    <style>
+        @font-face {
+            font-family: 'icomoon';
+            src:  url('fonts/icomoon.eot?eih8vw');
+            src:  url('fonts/icomoon.eot?eih8vw#iefix') format('embedded-opentype'),
+                url('fonts/icomoon.ttf?eih8vw') format('truetype'),
+                url('fonts/icomoon.woff?eih8vw') format('woff'),
+                url('fonts/icomoon.svg?eih8vw#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #333;
+        }
+        ul {
+            position: relative;
+            position: absolute;
+            top: 50%;left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px; height: 30px;
+            color: #FFF;
+            cursor: pointer;
+        }
+        li {
+            position: absolute;
+            list-style: none;
+            font-family: icomoon;
+            animation-name: move;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+            animation-delay: 0s;
+        }
+        div.btn {
+            position: absolute;
+            top: 50%;left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        button {
+            padding: 7px 13px;
+            border-radius: 10px;
+            border: 0px;
+            font-weight: bolder;
+        }
+        button:active {
+            transform: scale(0.9);
+        }
+
+        @keyframes move {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move1 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(10px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move2 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(20px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move3 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(30px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move4 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(40px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move5 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(50px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move6 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-10px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move7 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-20px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move8 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-30px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move9 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-40px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+        @keyframes move10 {
+            0% {
+                opacity: 0;
+                font-size: 15px;
+            }
+            40% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50px, -200px);
+                opacity: 0;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <!-- <li></li> -->
+    </ul>
+    <div class="btn">
+        <button>点赞</button>
+    </div>
+
+    <script>
+        const btn = document.querySelector('button')
+        const ul = document.querySelector('ul')
+        btn.addEventListener('click', function(){
+            let arr = 'rgba('+getRandom()+','+getRandom()+','+getRandom()+')'
+            let moveArr = ['move','move1','move2','move3','move4','move5','move6','move7','move8','move9','move10']
+            const li = document.createElement('li')
+            li.innerHTML = ''
+            li.style.color = arr
+            li.style.animationName = moveArr[getRandomMove(0,moveArr.length-1)]
+            ul.appendChild(li)
+            setTimeout(()=>{
+                ul.removeChild(li)
+            },2000)
+        })
+        function getRandom(){
+            return Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+        }
+        function getRandomMove(min, max){
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+</body>
+</html>

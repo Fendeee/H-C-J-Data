@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Type</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        body { background-color: #2C3E50; }
+        i,em { font-style: normal; }
+
+        div.title {
+            position: absolute;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%; height: 80px;
+            background-color: #1F2B38;
+            color: #FFF;
+            transition: all .5s ease 0s;
+        }
+        select {
+            margin: 0 10px;
+            padding: 5px 80px 5px 10px;
+            background-color: #A7C5E3;
+            color: #333;
+        }
+        div.banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px; height: 250px;
+            background-color: #34495E;
+            box-shadow: 1px 5px 10px 1px #1f2b38a7;
+            border-radius: 10px;
+            color: #FFF;
+            text-shadow: 5px 5px 3px #1F2B38;
+        }
+        h1 { font-size: 35px; font-weight: bolder; }
+        div.play { z-index: -1; }
+        div.play .Title {
+            width: 90%; height: 50px;
+            background-color: #243342;
+            border-radius: 10px;
+            font-weight: bolder;
+            font-size: 30px;
+            letter-spacing: 1px;
+            text-align: center;
+            line-height: 50px;
+        }
+        div.time {
+            margin: 20px 0 5px 0;
+            width: 90%; height: 30px;
+        }
+        div.time span:nth-child(1) { float: left}
+        div.time span:nth-child(2) { float: right}
+        div.text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%; height: 60px;
+        }
+        input {
+            margin-top: 10px;
+            padding: 10px 20px;
+            width: 50%;
+            border-radius: 5px;
+        }
+        strong { color: rgb(235, 66, 66); }
+        button.reload {
+            margin-top: 30px;
+            padding: 5px 12px;
+            border-radius: 5px;
+            border: 0px;
+            box-shadow: 3px 3px 5px 1px #1F2B38;
+            font-weight: bolder;
+        }
+        button.set {
+            position: absolute;
+            bottom: 10%; left: 10%;
+            padding: 5px 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px 1px #1F2B38;
+            border: 0px;
+        }
+        button:active { transform: scale(0.9); }
+
+        div.annotation {
+            display: block;
+            position: absolute;
+            top: 14%; left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 300px; height: 120px;
+            background-color: #15273a;
+            border-radius: 10px;
+            color: rgb(220, 220, 220);
+            transition: all 1s ease 0s;
+        }
+        ul li {
+            margin-left: 8px;
+            font-size: 12px;
+            list-style: circle;
+            line-height: 17px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        Difficulty <select name="" id="">
+            <option value="20">Easy</option>
+            <option value="15">Medium</option>
+            <option value="10">Hard</option>
+        </select>
+    </div>
+    <div class="banner">
+        <h1>Time ran out</h1>
+        <p>Your final score is <strong>0</strong></p>
+        <button class="reload">Reload</button>
+    </div>
+    <div class="banner play">
+        <div class="Title">👨‍💻Speed Type👩‍💻</div>
+        <div class="time">
+            <span>Time left：<i></i></span>
+            <span>Score：<em></em></span>
+        </div>
+        <div class="text">
+            <p>Type the following：</p>
+            <h1 class="random"></h1>
+        </div>
+        <input type="text" placeholder="Type the Word here...">
+    </div>
+    <button class="set">设置</button>
+    <div class="annotation">
+        <ul>
+            <li>默认难度为 Easy ，可点击 Difficulty 进行更换难度</li>
+            <li>Easy 总时长 20s，完成一个单词增加 3s</li>
+            <li>Medium 总时长 15s，完成一个单词增加 2s</li>
+            <li>Hard 总时长 10s，完成一个单词增加 1s</li>
+            <li>完成一个单词 + 5分</li>
+            <li style="color:rgb(235, 66, 66)">准备好了请点击 <strong>Reload</strong></li>
+        </ul>
+    </div>
+
+    <script>
+        let btn = document.querySelector('.set')
+        let title = document.querySelector('.title')
+        let selectElem = document.querySelector('select')
+        let elemPrice = selectElem.value
+        let btn2 = document.querySelector('.reload')
+        let play = document.querySelector('.play')
+        let I = document.querySelector('i')
+        let em = document.querySelector('em')
+        let randomText = document.querySelector('.random')
+        let input = document.querySelector('input')
+        let strong = document.querySelector('strong')
+        let annotation = document.querySelector('.annotation')
+        let flag = 0
+        let timer = null
+        let num = 20
+        let emNum = 0
+        let S = 3
+        let arr = [`tense`, `flag`, `event`, `git`, `package`, `expanding`, `animated`, `icomoon`, `navigation`, `colony`, `democracy`,
+        `compact`, `governor`, `dynasty`, `anarchy`, `bill`, `custom`, `cat`, `dog`, `pig`, `head`, `tooth`, `yellow`, `eye`, `ear`,
+        `kangaroo`, `toe`, `foot`, `summer`, `spring`, `weekend`, `weekends`, `september`, `object`, `function`, `breakfast`, `peach`,
+        `watermelon`, `farmer`, `nurse`, `ice`, `apple`, `writer`, `socks`, `home`, `house`, `excited`, `tree`, `kites`, `watch`, 
+        `insets`, `collet`, `experiment`, `butterflies`, `climb`, `take`, `picnic`, `pen`, `desk`, `father`, `grandfather`, `behind`,
+        `next`, `west`, `wind`, `bedroom`, `computer`, `bookstore`, `canteen`, `playground`, `kitchen`, `living`, `art`, `dress`, `slippers`,
+        `study`, `classroom`, `gym`, `bathroom`, `park`, `pants`, `hat`, `sandals`, `vest`, `jacket`, `jeans`, `boots`, `socks`, `small`,
+        `cold`, `austrian`, `american`, `london`, `flower`, `kites`, `pictures`, `answer`, `leaf`, `sprout`, `japan`, `english`, `skiing`,
+        `drinking`, `swimming`, `chess`, `pong`, `letter`, `leaves`, `violin`, `piano`, `mail`, `exercises`, `dishes`, `trip`, `mountain`
+    ]
+        randomText.innerHTML = arr[getRandom(0,arr.length-1)];
+        selectElem.addEventListener('change', function(){
+            elemPrice = selectElem.value
+            num = elemPrice
+            if(elemPrice == 20) S = 3
+            else if(elemPrice == 10) S = 2
+            else if(elemPrice == 5) S = 1
+        })
+        btn.addEventListener('click', function(){
+            if(flag == 0){
+                title.style.top = '-90px'
+                flag = 1
+            } else {
+                title.style.top = '0px'
+                flag = 0
+            }
+        })
+        btn2.addEventListener('click', function(){
+            input.focus()
+            emNum = 0
+            em.innerHTML = emNum
+            annotation.style.top = '-120px'
+            timer = setInterval(()=>{
+                fun()
+            },1000)
+            setTimeout(()=>{
+                play.style.zIndex = '999'
+            }, 1000)
+        })
+        input.addEventListener('keyup', function(){
+            if(this.value == randomText.innerHTML){
+                this.value = ''
+                randomText.innerHTML = arr[getRandom(0,arr.length-1)];
+                num = num + S
+                emNum = emNum + 5
+                em.innerHTML = emNum
+            }
+        })
+
+        function fun(){
+            if(num < 0){
+                num = elemPrice
+                input.value = ''
+                clearInterval(timer)
+                setTimeout(()=>{
+                    play.style.zIndex = '-999'
+                    strong.innerHTML = emNum
+                    annotation.style.top = '15%'
+                },1000)
+            } else {
+                I.innerHTML = num
+                I.style.color = '#FFF'
+                num--
+                if(num < 5){
+                    I.style.color = 'red'
+                }
+            }
+        }
+        
+        function getRandom(min, max){
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+</body>
+</html>

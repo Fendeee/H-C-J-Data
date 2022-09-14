@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Seat Booking</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #242333; color: #FFF; }
+        li { list-style: none; }
+        em { font-style: normal; color: #6FEAF6; }
+
+        div.root {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            height: 370px;
+        }
+        div.Pick {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 330px;
+        }
+        select {
+            padding: 5px;
+            margin-left: 5px;
+            letter-spacing: 1px;
+            border-radius: 7px;
+        }
+        div.nav {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        div.nav ul {
+            padding: 5px 0;
+            display: flex;
+            flex-direction: row;
+            width: 95%;
+            background-color: rgba(0, 0, 0, 0.201);
+            list-style: none;
+            border-radius: 8px;
+        }
+        div.nav ul li {
+            flex: 3;
+            text-align: center;
+            color: #777777;
+            font-size: 12px;
+        }
+        div.nav span {
+            display: inline-block;
+            margin: 0 5px;
+            width: 15px; height: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+        .gry { background-color: #444451;}
+        .blue { background-color: #6FEAF6 !important;}
+        .white { background-color: #fff;}
+        .icon_blue { background-color: #6FEAF6 !important;}
+        .icon_gry { background-color: #444451 !important;}
+        div.banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            perspective: 1000px;
+        }
+        div.banner .screen {
+            margin-bottom: 20px;
+            transform: rotateX(-40deg);
+            width: 65%; height: 80px;
+            background-color: #fff;
+            box-shadow: 0 3px 10px rgb(255 255 255 / 70%);
+        }
+        div.banner .goods {
+            width: 210px;
+        }
+        div.banner i {
+            margin: 0 3.3392px;
+            display: inline-block;
+            width: 15px; height: 13px;
+            background-color: #444451;
+            border-radius: 10px 10px 0 0;
+        }
+        div.banner i:nth-child(8n + 8) {
+            margin-right: 0;
+        }
+        div.banner i:nth-child(8n + 1) {
+            margin-left: 0;
+        }
+        div.banner i:nth-child(8n + 2) {
+            margin-right: 22.5px;
+        }
+        div.banner i:nth-child(8n + 6) {
+            margin-right: 22.5px;
+        }
+        div.banner i.icon:hover {
+            transform: scale(1.2);
+        }
+        div.footer {
+            margin-top: 30px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="root">
+        <div class="Pick">
+            <form action="">
+                Pick a movie: <select name="" id="">
+                    <option value="10">Avengers: Endgame ($10)</option>
+                    <option value="12">Joker ($12)</option>
+                    <option value="8">Toy Story 4 ($8)</option>
+                    <option value="9">The Lion King ($9)</option>
+                </select>
+            </form>
+        </div>
+
+        <div class="nav">
+            <ul class="nav">
+                <li><span class="gry"></span>N/A</li>
+                <li><span class="blue"></span>Selected</li>
+                <li><span class="white"></span>Occupied</li>
+            </ul>    
+        </div>
+
+        <div class="banner">
+            <div class="screen"></div>
+            <div class="goods">
+                <i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i style="background-color:#FFF"></i><i style="background-color:#FFF"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i style="background-color:#FFF"></i><i style="background-color:#FFF"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i style="background-color:#FFF"></i><i style="background-color:#FFF"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i id="icon"></i><i style="background-color:#FFF"></i><i style="background-color:#FFF"></i><i style="background-color:#FFF"></i><i id="icon"></i>
+            </div>
+        </div>
+
+        <div class="footer">
+            You have selected <em class="num">0</em> seats for a price of $<em class="RMB">0</em>
+            <p style="font-size: 12px; margin-top: 5px;">电影选票，上方有四类不同价位的电影，自行选择</p>
+        </div>
+    </div>
+
+    <script>
+        let icon = document.querySelectorAll('#icon')
+        let icon_blue = document.querySelectorAll('.icon-blue')
+        let number = document.querySelector('.num')
+        let RMB = document.querySelector('.RMB')
+        let selectElem = document.querySelector('select')
+        let ticketPrice = selectElem.value
+        let num = 0
+        for(let i=0; i<icon.length; i++){
+            icon[i].addEventListener('click', function(){
+                if(this.classList.contains('icon_blue')){
+                    num--
+                    this.classList.toggle('icon_blue')
+                } else {
+                    num++
+                    this.classList.toggle('icon_blue')
+                }
+                number.innerHTML = num
+                RMB.innerHTML = num * ticketPrice
+            })
+        }
+        selectElem.addEventListener('change', function(){
+            ticketPrice = selectElem.value
+            RMB.innerHTML = num * ticketPrice
+        })
+    </script>
+</body>
+</html>

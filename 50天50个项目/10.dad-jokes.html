@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dad-jokes</title>
+    <style>
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #686de0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 20px;
+        }
+        .banner {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgb(0 0 0 / 10%), 0 6px 6px rgb(0 0 0 / 10%);
+            padding: 50px 20px;
+            text-align: center;
+            max-width: 100%;
+            width: 800px;
+        }
+        h1 {
+            position: relative;
+            font-size: 18px;
+            opacity: 0.5;
+            letter-spacing: 2px;
+        }
+        h1::before {
+            content: 'FenDi made it';
+            position: absolute;
+            top: -18px;
+            left: 50%; transform: translateX(-50%);
+            font-weight: 400;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+        .joke {
+            font-size: 30px;
+            line-height: 40px;
+            margin: 50px auto;
+            max-width: 600px;
+            word-break:break-word;
+        }
+        button {
+            background-color: #9f68e0;
+            color: #fff;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgb(0 0 0 / 10%), 0 6px 6px rgb(0 0 0 / 10%);
+            padding: 14px 40px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Don't Laugh Challenge</h1>
+        <div class="joke">// Joke</div>
+        <button>Get Another Joke</button>
+    </div>
+
+    <script>
+        var arr = [
+            "I was fired from the keyboard factory yesterday.  I wasn't putting in enough shifts.",
+            "Ben & Jerry's really need to improve their operation. The only way to get there is down a rocky road.",
+            "It takes guts to be an organ donor.",
+            "What do you call a group of disorganized cats? A cat-catastrophe.",
+            "What's the longest word in the dictionary? Smiles. Because there's a mile between the two S's.",
+            "My pet mouse 'Elvis' died last night. He was caught in a trap..",
+            "Why don't you find hippopotamuses hiding in trees? They're really good at it.",
+            "Why do mathematicians hate the U.S.? Because it's indivisible.",
+            "How do you fix a damaged jack-o-lantern? You use a pumpkin patch.",
+            "In the news a courtroom artist was arrested today, I'm not surprised, he always seemed sketchy.",
+            "I decided to sell my Hoover… well it was just collecting dust.",
+            "It's hard to explain puns to kleptomaniacs, because they take everything literally.",
+            "I thought about going on an all-almond diet. But that's just nuts.",
+            "The other day, my wife asked me to pass her lipstick but I accidentally passed her a glue stick. She still isn't talking to me.",
+            "What do you call two barracuda fish? A PaiRauDa!",
+            "How many bones are in the human hand? A handful of them.",
+            "What do you call a guy lying on your doorstep? Matt."
+        ];
+        var button = document.querySelector('button');
+        var joke = document.querySelector('.joke');
+        function getRandom(min,max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        button.addEventListener('click', function() {
+            joke.innerHTML = arr[getRandom(0,arr.length-1)];
+        });
+    </script>
+</body>
+</html>

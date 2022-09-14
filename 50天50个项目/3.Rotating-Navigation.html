@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating-Navigation</title>
+    <style>
+        @font-face {
+          font-family: 'icomoon';
+          src:  url('fonts/icomoon.eot?eih8vw');
+          src:  url('fonts/icomoon.eot?eih8vw#iefix') format('embedded-opentype'),
+            url('fonts/icomoon.ttf?eih8vw') format('truetype'),
+            url('fonts/icomoon.woff?eih8vw') format('woff'),
+            url('fonts/icomoon.svg?eih8vw#icomoon') format('svg');
+          font-weight: normal;
+          font-style: normal;
+          font-display: block;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box;}
+        body {
+            background-color: #333333;
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+        }
+        div.box {
+            position: absolute;
+            width: 100%;
+            background-color: #fff;
+            transform-origin: top left;
+            transition: all 1s ease 0s;
+        }
+        .newbox {
+            transform: rotate(-20deg);
+        }
+        .round {
+            position: fixed;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            width: 14vw; height: 14vw;
+            background-color: #FF7979;
+            border-radius: 50%;
+            transition: all .7s ease 0s;
+        }
+        .newround {
+            transform: translate(-50%, -49%) rotate(-70deg);
+        }
+        .menu {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: calc(14vw / 2); height: calc(14vw / 2);
+            text-align: center;
+            line-height: calc(14vw / 2);
+            font-size: 2.5vw;
+            color: #fff;
+            font-family: 'icomoon';
+        }
+        .times {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: calc(14vw / 2); height: calc(14vw / 2);
+            text-align: center;
+            line-height: calc(14vw / 2);
+            font-size: 2.5vw;
+            color: #fff;
+            font-family: 'icomoon';
+        }
+        span {
+            cursor: pointer;
+        }
+        div.content {
+            margin: 6.5555vw auto;
+            width: 67vw;
+        }
+        .content h1 {
+            font-size: 1.9333vw;
+            font-weight: 550;
+        }
+        .content i {
+            color: #555;
+            font-weight: 350;
+            font-size: 0.8888vw;
+        }
+        .content h3 {
+            margin-bottom: 1.2222vw;
+        }
+        .content p {
+            margin: 1.2222vw 0;
+            color: #333;
+            line-height: 1.6;
+            font-size: 1vw;
+        }
+        img {
+            width: 100%; height: 44.4444vw;
+        }
+        .nav {
+            position: absolute;
+            left: 2.2222vw;
+            bottom: 5vw;
+            font-size: 1.3333vw;
+            color: #fff;
+        }
+        ul li {
+            transform: translateX(-13.3333vw);
+            padding: 1.1111vw 0;
+            list-style: none;
+        }
+        i {
+            font-family: 'icomoon';
+            font-style: normal;
+            font-size: 1.8667vw;
+            vertical-align: bottom;
+        }
+        i.two {
+            padding-left: 1.3333vw;
+        }
+        i.three {
+            padding-left: 2.3333vw;
+        }
+        li.newfrist {
+            transform: translateX(0.005vw);
+            transition: all 1s ease .8s;
+        }
+        li.newsecond {
+            transform: translateX(.5vw);
+            transition: all 1s ease .5s;
+        }
+        li.newthird {
+            transform: translateX(1vw);
+            transition: all 1s ease .3s;
+        }
+        li.newFirst {
+            transform: translateX(-13.3333vw);
+            transition: all 1s ease .3s;
+        }
+        li.newSecond {
+            transform: translateX(-13.3333vw);
+            transition: all 1s ease .5s;
+        }
+        li.newThird {
+            transform: translateX(-13.3333vw);
+            transition: all 1s ease .8s;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="round">
+            <div class="menu"><span id="menu"></span></div>
+            <div class="times"><span id="times"></span></div>
+        </div>
+        <div class="content">
+            <h1>Amazing Article</h1>
+            <i>Florin Pop</i>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia in ratione dolores cupiditate, 
+                maxime aliquid impedit dolorem nam dolor omnis atque fuga labore modi veritatis porro laborum minus, illo,
+                maiores recusandae cumque ipsa quos. Tenetur, consequuntur mollitia labore pariatur sunt quia harum aut. Eum
+                maxime dolorem provident natus veritatis molestiae cumque quod voluptates ab non, tempore cupiditate? 
+                Voluptatem, molestias culpa. Corrupti, laudantium iure aliquam rerum sint nam quas dolor dignissimos in
+                error placeat quae temporibus minus optio eum soluta cupiditate! Cupiditate saepe voluptates laudantium.
+                Ducimus consequuntur perferendis consequatur nobis exercitationem molestias fugiat commodi omnis. Asperiores
+                quia tenetur nemo ipsa.
+            </p>
+            <h3>My Dog</h3>
+            <img src="./images/Rotating_Navigation.png" alt="">
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit libero deleniti rerum quo, incidunt vel 
+                consequatur culpa ullam. Magnam facere earum unde harum. Ea culpa veritatis magnam at aliquid. Perferendis 
+                totam placeat molestias illo laudantium? Minus id minima doloribus dolorum fugit deserunt qui vero voluptas, 
+                ut quia cum amet temporibus veniam ad ea ab perspiciatis, enim accusamus asperiores explicabo provident. 
+                Voluptates sint, neque fuga cum illum, tempore autem maxime similique laborum odio, magnam esse. Aperiam?
+            </p>
+        </div>
+    </div>
+    <div class="nav">
+        <ul>
+            <li class="frist">
+                <i class="one"></i>
+                HOME
+            </li>
+            <li class="second">
+                <i class="two"></i>
+                ABOUT
+            </li>
+            <li class="third">
+                <i class="three"></i>
+                CONTACT
+            </li>
+        </ul>
+    </div>
+    <script>
+        var getMenu = document.getElementById('menu'),
+        getTimes = document.getElementById('times'),
+        getBox = document.querySelector('.box'),
+        getRound = document.querySelector('.round'),
+        getNav = document.querySelector('.nav'),
+        getLis = getNav.querySelectorAll('li'),
+        getFrist = document.querySelector('.frist'),
+        getSecond = document.querySelector('.second'),
+        getThird = document.querySelector('.third');
+        getMenu.onclick = function() {
+            getBox.className = 'box newbox';
+            getRound.className = 'round newround';
+            getFrist.className = 'frist newfrist';
+            getSecond.className = 'second newsecond';
+            getThird.className = 'third newthird';
+            getNav.style.position = 'fixed';
+        }
+        getTimes.onclick = function() {
+            getBox.className = 'box';
+            getRound.className = 'round round';
+            getFrist.className = 'frist newFirst';
+            getSecond.className = 'second newSecond';
+            getThird.className = 'third newThird';
+        }
+    </script>
+</body>
+</html>
